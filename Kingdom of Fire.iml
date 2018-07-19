@@ -83,5 +83,7 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="spigot" level="project" />
+    <orderEntry type="library" name="ActionBarAPI-1.5.3" level="project" />
   </component>
 </module>

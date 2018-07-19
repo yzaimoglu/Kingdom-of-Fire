@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="ActionBarAPI-1.5.3">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../Minecraft - Kingdom/plugins/ActionBarAPI-1.5.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../Minecraft - Kingdom/plugins/citizens-2.0.22-SNAPSHOT.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../Minecraft - Kingdom/plugins/ParticleAPI_v2.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../Minecraft - Kingdom/plugins/ProtocolLib.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../Minecraft - Kingdom/plugins/ProtocolTabAPI.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../Minecraft - Kingdom/plugins/SmartInvs-1.2.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
