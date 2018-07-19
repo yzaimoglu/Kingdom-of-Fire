@@ -1,0 +1,69 @@
+name: KingdomOfFire
+author: Yagi
+version: 1.0
+main: me.yagi.game.Main
+depends: [Citizens, SmartInvs]
+commands:
+     admin:
+          description: Opens up the Administrator Menu!
+          aliases: [administrator, adminmenu, administratormenu, operatormenu, opmenu]
+     rank:
+          description: Sets the rank of a specific player!
+          aliases: [setrank, promote]
+     gamemode:
+          description: Changes the gamemode of a specific player!
+          aliases: [gm, spielmodus, changegamemode]
+     test:
+          description: test
+     teleport:
+          description: Teleports a specific player to another!
+          aliases: [tp, teleportieren, teleportme]
+     teleporthere:
+          description: Teleports a specific player to your location!
+          aliases: [tphere, teleportierehier, s]
+     playerinfo:
+          description: Shows all the relevant information for a player!
+          aliases: [pinfo, stats, playerinformation]
+     inventorysee:
+          description: Shows the inventory of a specific player!
+          aliases: [invsee, showinv, showinventory]
+     fly:
+          description: Toggles flight mode of a specific player!
+          aliases: [flightmode, flymode, flymetothemoon]
+     words:
+          description: Manages the blocked words in chat!
+          aliases: [blockwords, wordblock, addwords, removewords, listwords, censorword]
+     commands:
+          description: Manages the blocked commands!
+          aliases: [blockcmds, commandblock, cmdblock, addblockedcommands, removeblockedcommands, listcommands, censorcmd, censorcommands]
+     apply:
+          description: Gives detailed information on our application process!
+     staff:
+          description: Gives a list of online staff members!
+     discord:
+          description: Provides the discord link!
+     website:
+          description: Provides the website link!
+     hilfe:
+          description: Gives a list of all user-available commands and a little description of each command!
+     setlevel:
+          description: Sets the level of a specific player!
+          aliases: [levelset, changelevel]
+     setexp:
+          description: Sets the EXP amount of a specific player!
+          aliases: [expset, changeexp]
+     setrawexp:
+          description: Sets the Raw EXP amount of a specific player!
+          aliases: [rawexpset, changerawexp]
+     console:
+          description: Couple of functions for the console!
+          aliases: [consolecommands, consolemode]
+     slot:
+          description: Sets the slot amount to be limited!
+          aliases: [limitslots, slots, setslots, currentslots]
+     gamemaster:
+          description: Functionality for Gamemasters.
+          aliases: [gamemasterhelp, gmhelp, gmrank]
+     friend:
+          description: Manages the friend status!
+          aliases: [setfriend, friendstatus, managefriendstatus, managefriend]

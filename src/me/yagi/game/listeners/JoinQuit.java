@@ -34,6 +34,11 @@ public class JoinQuit implements Listener {
 	@EventHandler
 	public void on(PlayerJoinEvent e) {
 		Player p = e.getPlayer();
+
+        if(!PlayerFile.exists(p)) {
+            PlayerFile.create(p);
+        }
+
 		List<String> whitelisted_players = ServerProperties.getWhitelistedPlayers();
 		List<String> blacklisted_players = ServerProperties.getBlacklistedPlayers();
 		
