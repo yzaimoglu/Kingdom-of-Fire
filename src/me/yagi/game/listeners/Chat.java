@@ -1,6 +1,9 @@
 package me.yagi.game.listeners;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -12,18 +15,22 @@ import me.yagi.game.api.Extras;
 import me.yagi.game.api.PlayerFile;
 import me.yagi.game.api.ServerProperties;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+
 public class Chat implements Listener {
 	
 	@EventHandler
 	public void on(AsyncPlayerChatEvent e) {
 		Player p = e.getPlayer();
 		String message = e.getMessage();
-		message.replaceAll("%", "%%");
+		message = message.replaceAll("%", "%%");
 		String format = " §7[%level%/%title%] §b%player%§8: §7%message%";
 		e.setCancelled(true);
 		
 		ServerProperties.setNewMessage(p, message);
-		
+
 		if(PlayerFile.getRank(p).equalsIgnoreCase("ADMINISTRATOR") || PlayerFile.getRank(p).equalsIgnoreCase("STAFF")) {
 			if(message.startsWith("!")) {
 				for(Player all : Bukkit.getOnlinePlayers()) {
@@ -90,16 +97,14 @@ public class Chat implements Listener {
 					}
 				}
 				Bukkit.getConsoleSender().sendMessage(format);
-				for(Player all : Bukkit.getOnlinePlayers()) {
-					if(message.contains(all.getName())) {
-						message.replaceAll(all.getName(), "§b@"+all.getName()+"§e");
-						format = format.replaceAll("%message%", message.replaceAll("&", "§"));
-						all.sendMessage(format);
-					} else {
-						all.sendMessage(format);
-					}
-				}
-				
+				Location loc = p.getLocation();
+				Entity[] entitylist = getNearbyEntities(loc, 25);
+				for(Entity entity : entitylist) {
+				    if(entity instanceof Player) {
+				        Player target = (Player) entity;
+				        target.sendMessage(format);
+                    }
+                }
 			}
 			
 			else if(PlayerFile.getRank(p).equalsIgnoreCase("STAFF")) {
@@ -132,15 +137,14 @@ public class Chat implements Listener {
 				}
 				
 				Bukkit.getConsoleSender().sendMessage(format);
-				for(Player all : Bukkit.getOnlinePlayers()) {
-					if(message.contains(all.getName())) {
-						message.replaceAll(all.getName(), "§b@"+all.getName()+"§7");
-						format = format.replaceAll("%message%", message.replaceAll("&", "§"));
-						all.sendMessage(format);
-					} else {
-						all.sendMessage(format);
-					}
-				}
+				Location loc = p.getLocation();
+                Entity[] entitylist = getNearbyEntities(loc, 25);
+                for(Entity entity : entitylist) {
+                    if(entity instanceof Player) {
+                        Player target = (Player) entity;
+                        target.sendMessage(format);
+                    }
+                }
 				
 			}
 			
@@ -173,15 +177,14 @@ public class Chat implements Listener {
 				}
 				
 				Bukkit.getConsoleSender().sendMessage(format);
-				for(Player all : Bukkit.getOnlinePlayers()) {
-					if(message.contains(all.getName())) {
-						message.replaceAll(all.getName(), "§b@"+all.getName()+"§7");
-						format = format.replaceAll("%message%", message);
-						all.sendMessage(format);
-					} else {
-						all.sendMessage(format);
-					}
-				}
+                Location loc = p.getLocation();
+                Entity[] entitylist = getNearbyEntities(loc, 25);
+                for(Entity entity : entitylist) {
+                    if(entity instanceof Player) {
+                        Player target = (Player) entity;
+                        target.sendMessage(format);
+                    }
+                }
 				
 			} else {
 				return;
@@ -189,6 +192,26 @@ public class Chat implements Listener {
 			Extras.playSound(p);
 		}
 		
+	}
+
+    private static Entity[] getNearbyEntities(Location l, int radius){
+        int chunkRadius = radius < 16 ? 1 : (radius - (radius % 16))/16;
+        HashSet<Entity> radiusEntities = new HashSet<Entity>();
+        for (int chX = 0 -chunkRadius; chX <= chunkRadius; chX ++){
+            for (int chZ = 0 -chunkRadius; chZ <= chunkRadius; chZ++){
+                int x=(int) l.getX(),y=(int) l.getY(),z=(int) l.getZ();
+                for (Entity e : new Location(l.getWorld(),x+(chX*16),y,z+(chZ*16)).getChunk().getEntities()){
+                    if (e.getLocation().distance(l) <= radius && e.getLocation().getBlock() != l.getBlock()) radiusEntities.add(e);
+                }
+            }
+        }
+        return radiusEntities.toArray(new Entity[radiusEntities.size()]);
+    }
+
+	private static void sendMessage(Player p, String message) {
+
+		p.sendMessage(message);
+
 	}
 	
 
