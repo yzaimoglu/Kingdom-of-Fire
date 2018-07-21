@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="Experimental">
-    <output-path>$PROJECT_DIR$/../../Minecraft/plugins/IntelliJ Exports/Experimental.jar</output-path>
-    <root id="archive" name="Experimental.jar">
-      <element id="module-output" name="Kingdom of Fire" />
-    </root>
-  </artifact>
-</component>
